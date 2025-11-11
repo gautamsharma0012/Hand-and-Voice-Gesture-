@@ -1,0 +1,102 @@
+<ModeSelectScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 30
+        padding: 50
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Choose Mode"
+            font_size: 36
+            color: 0, 1, 0, 1
+
+        Button:
+            text: "🖐️ Hand Gesture Mode"
+            font_size: 24
+            background_color: 0.1, 0.3, 0.1, 1
+            color: 0, 1, 0, 1
+            size_hint: None, None
+            size: 300, 60
+            on_release:
+                app.start_hand_mode()
+
+        Button:
+            text: "🎤 Voice Command Mode"
+            font_size: 24
+            background_color: 0.1, 0.3, 0.1, 1
+            color: 0, 1, 0, 1
+            size_hint: None, None
+            size: 300, 60
+            on_release:
+                app.start_voice_mode()
+
+<HandControlScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Image:
+            id: hand_cam
+            size_hint: 1, 0.9
+
+        Button:
+            text: "🔙 Back to Menu"
+            font_size: 20
+            size_hint_y: None
+            height: '60dp'
+            background_color: 0.2, 0.3, 0.2, 1
+            color: 0, 1, 0, 1
+            on_release:
+                app.stop_hand_mode()
+                app.root.current = 'mode_select'
+
+<VoiceControlScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+        canvas.before:
+            Color:
+                rgba: 0, 0, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "🎤 Speak a Command"
+            font_size: 24
+            color: 0, 1, 0, 1
+            size_hint_y: None
+            height: '60dp'
+
+        Button:
+            text: "🎙️ Listen"
+            font_size: 24
+            size_hint_y: None
+            height: '60dp'
+            background_color: 0.1, 0.4, 0.1, 1
+            color: 0, 1, 0, 1
+            on_release:
+                app.listen_to_voice()
+
+        Button:
+            text: "🔙 Back to Menu"
+            font_size: 20
+            size_hint_y: None
+            height: '60dp'
+            background_color: 0.2, 0.3, 0.2, 1
+            color: 0, 1, 0, 1
+            on_release:
+                app.root.current = 'mode_select'
